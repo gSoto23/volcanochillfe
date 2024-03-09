@@ -68,7 +68,7 @@
                     </li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="#gallery">GALLERY</a>
                     </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="services.html">ESPAÑOL</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="indexes.html">ESPAÑOL</a>
                     </li>
                     <li class="rd-nav-item">
                       <div class="text-center text-lg-start mt-40 mt-xl-60 wow fadeInUp" data-wow-delay=".6s"><a
@@ -147,64 +147,21 @@
           </div>
           <div class="col-sm-10 col-lg-5 wow fadeInRight" data-wow-delay=".5s">
             <div class="main-select-box" id="booking">
-              <div id="check-in-user">
-                <span class="heading-4-v2">Hi "NAME"</span>
-                <p>Gracias por reservar nuestra propiedad, a cotinuacion encontrara una tabla con los codigos necesarios
-                  para hacer su ingreso.</p>
-                <section class="section section-lg bg-default text-center">
-                  <div class="container">
-                    <div class="table-custom-responsive">
-                      <table class="table-custom table-custom-striped table-custom-primary">
-                        <thead>
-                          <tr>
-                            <th>01/01/24</th>
-                            <th>TO</th>
-                            <th>01/02/24</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Main Door</td>
-                            <td></td>
-                            <td>1111</td>
-                          </tr>
-                          <tr>
-                            <td>Cabin #1</td>
-                            <td></td>
-                            <td>2222</td>
-                          </tr>
-                          <tr>
-                            <td>Cabin #2</td>
-                            <td></td>
-                            <td>3333</td>
-                          </tr>
-                          <tr>
-                            <td>Cabin #3</td>
-                            <td></td>
-                            <td>4444</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </section>
-                <h6>Wifi: volcanochillCR - Pass: poasvolcano</h6>
-                <div class="form-wrap form-wrap-button">
-                  <button class="button button-lg button-primary button-full-width" type="submit">Download
-                    Codes</button>
-                </div>
-              </div>
+              <div id="check-in-user"></div>
               <div id="check-in-code">
                 <span class="heading-4-v2">CHECK IN</span>
                 <p>Add your reservation code to get all information you need to access to the property</p>
                 <div class="checkin-box">
                   <div class="form-wrap">
-                    <input class="form-input" id="reservation-code" type="text" name="email"
+                    <input class="form-input" id="reservation-code" type="text"
                       data-constraints="@Required">
                     <label class="form-label" for="reservation-code">Reservation Code</label>
                   </div>
                   <div class="form-wrap form-wrap-button">
-                    <button class="button button-lg button-primary button-full-width" type="submit">GET CODES</button>
+                    <button class="button button-lg button-primary button-full-width" id="checkCode">GET CODES</button>
+                  </div>
+                  <div>
+                    <h4 id="errorMsg"></h4>
                   </div>
                 </div>
               </div>
@@ -419,6 +376,8 @@
   <div class="snackbars" id="form-output-global"></div>
   <script src="js/core.min.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/jspdf.min.js"></script>
+  <script src="js/checkin.js"></script>
 </body>
 
 </html>
