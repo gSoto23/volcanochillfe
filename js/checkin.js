@@ -34,7 +34,7 @@ function showData() {
             '</tbody></table></div></div></section><h6>Wifi: volcanochillCR - Pass: poasvolcano</h6></div><div class="form-wrap form-wrap-button"><button class="button button-lg button-primary button-full-width" id="saveData">Download Codes</button></div>';
     }
 
-    //Revisar el Pass para moistrar las contrasenas
+    //Revisar el Pass para mostrar las contrasenas
     $("#checkCode").click(function () {
         userCodeWeb = $("#reservation-code").val().toLowerCase();
         codeReserva = checkInData[0].reservation_code.toLowerCase();
@@ -42,6 +42,14 @@ function showData() {
         if (userCodeWeb == codeReserva) {
             $("#check-in-code").css("display", "none");
             document.getElementById('check-in-user').innerHTML = checkIn;
+            $("#saveData").on('click', function () {
+                // saveDiv('dataPrint', 'volcanochill checkin');
+                html2canvas(document.querySelector('#dataPrint'), {
+                    onrendered: function (canvas) {
+                        return Canvas2Image.saveAsPNG(canvas,null,null,'volcanochill');
+                    }
+                });
+            });
         }
         else {
             $("#reservation-code").css("border", "solid 2px red");
@@ -49,16 +57,11 @@ function showData() {
         };
     });
 
-    //Descargar el archivo con las claves
-    $('#saveData').on('click', function () {
-        saveDiv('dataPrint', 'volcanochill checkin')
-    });
-
     return checkIn;
 }
 
-function saveDiv(divId, title) {
-    doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
-    doc.save('div.pdf');
-
-}
+// Descargar Datos en PDF
+// function saveDiv(divId, title) {
+//     doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+//     doc.save('div.pdf');
+// }

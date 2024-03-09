@@ -6021,6 +6021,7 @@ html.tablet .ui-to-top {
 	text-align: left;
 	font-size: 22px;
 	line-height: 46px;
+	z-index: 10;
 }
 
 .rd-navbar-fixed .rd-navbar-brand img {
