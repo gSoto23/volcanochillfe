@@ -63,11 +63,12 @@
 }
 
 .vct {
-	margin-top: 35px;
+	margin-top:20px;
 }
 
 #dataPrint {
-	margin-top: 15px;
+	padding: 20px 0px;
+    background-color: white;
 }
 
 .m-menu {
