@@ -58,6 +58,24 @@
 /** @group Base */
 /** @section Reset Styles*/
 
+.bulletImg {
+	margin: 5px;
+	width: 25px;
+	height: 25px;
+}
+
+.img-align {
+	margin: 15% 0;
+}
+
+.l-header {
+ display: block;
+}
+
+.text-tabs {
+	padding: 30px 0;
+}
+
 #errorMsg {
 	color: red;
 }
@@ -388,7 +406,7 @@ h3+img {
 	}
 
 	.row+.row-xl-80 {
-		margin-top: 115px;
+		margin-top: 80px;
 	}
 }
 
@@ -2825,6 +2843,7 @@ img {
 
 .table-custom.table-custom-striped {
 	border-bottom: 1px solid #cccccc;
+	text-align: center;
 }
 
 .table-custom.table-custom-striped tbody tr:nth-of-type(odd) td {
