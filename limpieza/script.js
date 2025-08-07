@@ -256,7 +256,7 @@ async function enviarReporte() {
         // Esperar a que todas las imágenes se procesen
         await Promise.all(imagePromises);
 
-        const response = await fetch('http://localhost:3000/api/enviar-reporte', {
+        const response = await fetch('https://volcanochill.com/api/enviar-reporte', {
             method: 'POST',
             body: formData
         });
