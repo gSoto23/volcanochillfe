@@ -33,7 +33,6 @@ const tareasDespues = [
     { icon: "clipboard", text: "Revisar inventario: papel, jabón, cloro, suavitel, etc." }
 ];
 
-// Función para tomar foto con la cámara
 function tomarFoto() {
     const input = document.getElementById('tomarFoto');
     input.click();
@@ -50,7 +49,6 @@ function formatearFechaVisual(fecha) {
     return `${dia}/${mes}/${año}`;
 }
 
-// Función para comprimir imagen
 async function comprimirImagen(imagenBase64, maxWidth = 800, maxHeight = 600) {
     return new Promise((resolve) => {
         const img = new Image();
@@ -89,13 +87,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
     feather.replace();
 });
 
+function generarFilaTarea(tarea) {
+    return `
+        <tr class="hover:bg-gray-50 transition-colors duration-200">
+            <td class="px-3 sm:px-6 py-4">
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="flex-shrink-0 text-gray-500">
+                        <i data-feather="${tarea.icon}" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                    </div>
+                    <div class="text-sm text-gray-900 break-words">${tarea.text}</div>
+                </div>
+            </td>
+            <td class="px-2 sm:px-6 py-4 text-center w-16 sm:w-24">
+                <label class="inline-flex items-center justify-center">
+                    <input type="checkbox" 
+                           class="form-checkbox h-6 w-6 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer transition-all duration-200"
+                           aria-label="Marcar tarea como completada">
+                </label>
+            </td>
+        </tr>
+    `;
+}
+
 async function previewImages(event) {
     const preview = document.getElementById('imagePreview');
     const files = event.target.files;
 
     if (!files || files.length === 0) return;
 
-    const file = files[0]; // Solo tomamos la primera foto
+    const file = files[0];
     if (!file.type.startsWith('image/')) {
         alert('Por favor, tome una foto');
         return;
@@ -124,7 +144,6 @@ async function previewImages(event) {
             preview.appendChild(div);
             feather.replace();
 
-            // Hacer scroll a la imagen recién tomada
             div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
         reader.readAsDataURL(file);
@@ -137,26 +156,6 @@ async function previewImages(event) {
 
 function eliminarImagen(elemento) {
     elemento.remove();
-}
-
-function generarFilaTarea(tarea) {
-    return `
-        <tr class="hover:bg-gray-50 transition-colors duration-200">
-            <td class="px-6 py-4 whitespace-nowrap">
-                <div class="flex items-center gap-3">
-                    <div class="flex-shrink-0 text-gray-500">
-                        <i data-feather="${tarea.icon}" class="w-5 h-5"></i>
-                    </div>
-                    <div class="text-sm text-gray-900">${tarea.text}</div>
-                </div>
-            </td>
-            <td class="px-6 py-4 text-center">
-                <label class="inline-flex items-center justify-center">
-                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer transition-all duration-200">
-                </label>
-            </td>
-        </tr>
-    `;
 }
 
 function mostrarTabla() {
@@ -233,7 +232,6 @@ async function enviarReporte() {
         formData.append('asunto', asunto);
         formData.append('mensaje', mensaje);
 
-        // Agregar las imágenes al FormData
         const imagePromises = Array.from(imageElements).map(async (img, index) => {
             const response = await fetch(img.src);
             const blob = await response.blob();
@@ -241,7 +239,6 @@ async function enviarReporte() {
             return true;
         });
 
-        // Mostrar indicador de carga
         const botonEnviar = document.querySelector('button[onclick="enviarReporte()"]');
         const textoOriginal = botonEnviar.innerHTML;
         botonEnviar.innerHTML = `
@@ -253,7 +250,6 @@ async function enviarReporte() {
         `;
         botonEnviar.disabled = true;
 
-        // Esperar a que todas las imágenes se procesen
         await Promise.all(imagePromises);
 
         const response = await fetch('https://volcanochill.com/api/enviar-reporte', {
@@ -265,7 +261,6 @@ async function enviarReporte() {
 
         if (data.success) {
             alert('Reporte enviado con éxito');
-            // Limpiar el formulario
             document.getElementById('tipoLimpieza').value = '';
             document.getElementById('comentarios').value = '';
             document.getElementById('imagePreview').innerHTML = '';
@@ -278,7 +273,6 @@ async function enviarReporte() {
         console.error('Error al enviar el reporte:', error);
         alert('Hubo un error al enviar el reporte. Por favor intente de nuevo.');
     } finally {
-        // Restaurar el botón
         const botonEnviar = document.querySelector('button[onclick="enviarReporte()"]');
         botonEnviar.innerHTML = `
             <i data-feather="check-circle"></i>
