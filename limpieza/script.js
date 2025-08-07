@@ -7,6 +7,7 @@ const tareasAntes = [
     { icon: "refresh-cw", text: "Lavar y acomodar trastes" },
     { icon: "package", text: "Dejar 2 pañitos de cocina" },
     { icon: "box", text: "Limpiar el microondas por dentro y fuera" },
+    { icon: "thermometer", text: "Limpiar refrigeradoras, vaciarlas, dejarlas abiertas"},
     { icon: "tool", text: "Limpiar cocina por dentro y fuera" },
     { icon: "shopping-bag", text: "Poner bolsa a los basureros" },
     { icon: "disc", text: "Revisar parrilla y lavarla" },
